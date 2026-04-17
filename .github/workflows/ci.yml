@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        app:
+          - vue-project
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: vue-project
+
+      - name: Lint
+        run: npm run lint --if-present
+        working-directory: vue-project
+
+      - name: Run tests
+        run: npm run test --if-present
+        working-directory: vue-project
+
+      - name: Build
+        run: npm run build
+        working-directory: vue-project
