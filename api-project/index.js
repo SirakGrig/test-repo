@@ -7,7 +7,7 @@ const PORT = 3001;
 app.get("/health", (req, res) => {
     res.json({
         status: "ok",
-        message: "API is running 2 commit",
+        message: "API is running 3 commit",
         time: new Date().toISOString()
     });
 });
